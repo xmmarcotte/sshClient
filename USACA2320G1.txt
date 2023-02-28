@@ -1,0 +1,65 @@
+
+config system snmp community
+    edit 1
+        set name "SNMPmauRO"
+        config hosts
+            edit 1
+                set ip 10.96.17.12 255.255.255.255
+                set host-type trap
+            next
+        end
+    next
+end
+config system snmp user
+    edit "$Zabbix"
+        set notify-hosts 3.16.184.243
+        set events vpn-tun-up vpn-tun-down faz-disconnect wc-ap-up wc-ap-down fswctl-session-up fswctl-session-down
+        set security-level auth-priv
+        set auth-pwd ENC ZCBuYWrxt88HStY9fh7/QLEt4FiuIqtcGet6L8+PZuT3SkRctvKL0hqI/Ke2t7n0fLmo0TRz2vDh3nLyEiojvjdr1DVk/EfbEiNvJ7IO9WNwVln22ispQUMItFLP6satjM0oafUgxrIKMf3aIr0KttPXeBTPqAVa8bS+te+mTgIvFHr/RSQOQ6Rr9ofXGOgd0LGBdQ==
+        set priv-pwd ENC ZCBuYWrxt88HStY9fh7/QLEt4FiuIqtcGet6L8+PZuT3SkRctvKL0hqI/Ke2t7n0fLmo0TRz2vDh3nLyEiojvjdr1DVk/EfbEiNvJ7IO9WNwVln22ispQUMItFLP6satjM0oafUgxrIKMf3aIr0KttPXeBTPqAVa8bS+te+mTgIvFHr/RSQOQ6Rr9ofXGOgd0LGBdQ==
+    next
+end
+config log fortianalyzer setting
+    set status enable
+    set server "172.85.135.227"
+    set serial "FAZ-VM0000040029"
+    set upload-option realtime
+    set reliable enable
+end
+config user ldap
+    edit "NYAUTH"
+        set cnid "uid"
+    next
+end
+config system sdwan
+    config service
+        edit 3
+            set name "VLAN_13"
+            set dst "all"
+            set src "VLAN13 address"
+            set priority-members 1 2
+        next
+        move 3 before 1
+    end
+end
+config user group
+    edit "Sitel"
+        set member "NYAUTH"
+        config match
+            edit 1
+                set server-name "NYAUTH"
+                set group-name "cn=Sitel,ou=MSProv,dc=granitenocadmins,dc=com"
+            next
+        end
+    next
+end
+config system admin
+    edit "sitel_auth"
+        set remote-auth enable
+        set trusthost1 65.202.145.2 255.255.255.255
+        set accprofile "prof_admin"
+        set vdom "root"
+        set wildcard enable
+        set remote-group "Sitel"
+    next
+end

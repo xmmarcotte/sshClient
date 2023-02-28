@@ -1,0 +1,5538 @@
+echo off
+# Page access skipped.
+# Page system_tools skipped.
+cd /system/security/security_profile
+batch_mode
+set idle_timeout=9000
+set rpc=no
+set enable_pluggable_device_detection=no
+#set enable_pluggable_storage_devices=yes
+set enable_1-wire_support=yes
+#set port_access=port_access_per_user_group_authorization
+set port_access=apply_to_all_users
+set session=port_access_single_session_read|write
+#set session=port_access_multiple_session_read|write
+set port_access_kill_multi_session=no
+set port_access_send_message_multi_session=no
+set port_access_power_control=no
+set port_access_data_buffer_management=no
+set port_access_restful_menu=no
+set erase_flash_on_restore_to_factory_configuration=no
+set bootp_enabled=yes
+set bootp_interface=eth0
+set enable_live_configuration_retrieval_(any_time_dhcp_renews)=yes
+set ssh_allows_authentication_via_username|password=yes
+#set security_profile=secure
+#set security_profile=moderate
+#set security_profile=open
+set security_profile=custom
+set enable_telnet_service=no
+set enable_ftp_service=no
+set enable_tftp_service=no
+#set tftp_root_directory=/mnt/hdUser
+set enable_snmp_service=yes
+set enable_ipsec=no
+set answer_icmp_message=yes
+set ssh_version=2
+set ssh_tcp_port=22
+set ssh_allow_root_access=yes
+set ssh_minimum_cipher_and_mac_suite_level=high
+set enable_http_session=yes
+set http_port=80
+set enable_https_session=yes
+set https_tls_version=1.1|1.2
+set https_minimum_cipher_suite_level=high
+set https_port=443
+set redirect_http|https=no
+set http_strict_transport_security=no
+set enable_api_http_access=no
+#set api_http_port=8080
+set enable_api_https_access=yes
+set api_https_port=48048
+set disable_console_port=no
+submit
+# Page fips_140 skipped.
+cd /system/security/dsview
+batch_mode
+set allow_appliance_to_be_managed_by_dsview.=yes
+#set dsview_certificate_for_enrollment=2048-bit
+set dsview_certificate_for_enrollment=1024-bit
+submit
+cd /system/date_and_time/date_and_time
+batch_mode
+set settings=enable_network_time_protocol
+set server_1=pool.ntp.org
+#set server_2=
+#set settings=manual
+#set month=02
+#set day=23
+#set year=2023
+#set hour=22
+#set minute=17
+#set second=42
+submit
+cd /system/date_and_time/time_zone
+batch_mode
+set time_zone=predefined
+set zone=utc
+#set time_zone=define
+#set name=
+#set acronym=
+#set gmt_offset=
+#set enable_daylight_saving_time=no
+#set daylight_saving_time_acronym=
+#set save_time=
+#set start_month=
+#set start_week=
+#set start_weekday=
+#set start_hour=
+#set end_month=
+#set end_week=
+#set end_weekday=
+#set end_hour=
+submit
+cd /system/help_and_language
+batch_mode
+set appliance_language=english
+set url=http://global.avocent.com/us/olh/acs8x/en/index.html
+submit
+cd /system/general
+batch_mode
+set enable_login_banner=yes
+set login_banner="==========================================================================\\n         ██████  ██████  ███    ███     ██████   ██████   ██████  \\n        ██      ██    ██ ████  ████          ██ ██  ████ ██  ████ \\n        ██      ██    ██ ██ ████ ██      █████  ██ ██ ██ ██ ██ ██ \\n        ██      ██    ██ ██  ██  ██     ██      ████  ██ ████  ██ \\n         ██████  ██████  ██      ██     ███████  ██████   ██████\\n\\n    WARNING! The use of this system is restricted to authorized users. \\n                     All others will be incinerated.\\n=========================================================================="
+set viewer_type=html5_viewer
+#set viewer_type=jnlp_viewer
+submit
+cd /system/boot_configuration
+batch_mode
+set boot_mode=flash
+set boot_image=image_1
+#set boot_image=image_2
+#set boot_mode=network
+#set appliance_ip_address=192.168.0.1
+#set tftp_server_ip=192.168.0.2
+#set filename=
+set watchdog_timer=enabled
+set console_speed=9600
+submit
+# Page information skipped.
+cd /network/settings
+batch_mode
+set hostname=COM200
+set primary_dns=192.168.40.241
+set secondary_dns=10.0.1.241
+set domain=grt.granitenet.com
+set search=grt.granitenet.com
+set enable_lldp=no
+set enable_ipv6=yes
+set get_dns_from_dhcpv6=no
+set get_domain_from_dhcpv6=no
+set frequency=1m
+set max_time=24h
+set multiple_routing=none
+#set multiple_routing=enable_network_failover
+#set primary_interface=eth0
+#set secondary_interface=eth1
+#set vpn_connection_name=
+#set trigger_=primary_interface_down
+#set trigger_=unreachable_primary_default_gateway
+#set trigger_=unreachable_dsview
+#set trigger_=unreachable_ip_address
+#set ipv4_address=
+#set multiple_routing=enable_ipv4_multiple_routing_tables
+set enable_bonding=no
+#set bonding-mii-mon=100
+#set bonding-up_delay=200
+submit
+cd /network/devices/eth0
+batch_mode
+set set_as_primary_interface=yes
+set status=enabled
+#set ipv4_method=dhcp
+set ipv4_method=static ipv4_address=192.168.41.200 ipv4_mask=255.255.254.0 ipv4_gateway=192.168.40.1
+#set ipv4_method=ipv4_address_unconfigured
+set ipv6_method=stateless
+#set ipv6_method=dhcpv6
+#set ipv6_method=static #ipv6_address= #ipv6_prefix_length=
+#set ipv6_method=ipv6_address_unconfigured
+set mode=auto
+set mtu=1500
+submit
+cd /network/devices/eth1
+batch_mode
+set set_as_primary_interface=no
+set status=enabled
+#set ipv4_method=dhcp
+set ipv4_method=static ipv4_address=192.168.161.10 ipv4_mask=255.255.255.0 ipv4_gateway=192.168.40.1
+#set ipv4_method=ipv4_address_unconfigured
+set ipv6_method=stateless
+#set ipv6_method=dhcpv6
+#set ipv6_method=static #ipv6_address= #ipv6_prefix_length=
+#set ipv6_method=ipv6_address_unconfigured
+set mode=auto
+set mtu=1500
+submit
+cd /network/ipv4_static_routes
+delete -
+add
+set destination=host_ip_or_network
+set destination_net=default
+set gateway=192.168.40.1
+set interface=eth0
+set metric=3
+save --cancelOnError
+cd /network/ipv6_static_routes
+delete -
+# Table ipv6_static_routes is empty
+cd /network/hosts
+delete -
+add
+set ip=127.0.0.1
+set hostname=localhost.localdomain
+set alias=localhost
+save --cancelOnError
+add
+set ip=::1
+set hostname=localhost
+set alias="ip6-localhost ip6-loopback"
+save --cancelOnError
+add
+set ip=fe00::0
+set hostname=ip6-localnet
+#set alias=
+save --cancelOnError
+add
+set ip=ff00::0
+set hostname=ip6-mcastprefix
+#set alias=
+save --cancelOnError
+add
+set ip=ff02::1
+set hostname=ip6-allnodes
+#set alias=
+save --cancelOnError
+add
+set ip=ff02::2
+set hostname=ip6-allrouters
+#set alias=
+save --cancelOnError
+cd /network/firewall/ipv4_filter_table
+delete -
+cd /network/firewall/ipv4_filter_table/FORWARD
+delete -
+cd /network/firewall/ipv4_filter_table
+change_policy FORWARD
+set policy=accept
+save --cancelOnError
+cd /network/firewall/ipv4_filter_table/FORWARD
+# Table FORWARD is empty
+cd /network/firewall/ipv4_filter_table/INPUT
+delete -
+cd /network/firewall/ipv4_filter_table
+change_policy INPUT
+set policy=accept
+save --cancelOnError
+cd /network/firewall/ipv4_filter_table/INPUT
+add
+set target=DROP
+#set source_net4=
+#set destination_net4=
+#set protocol=numeric
+#set protocol_number=
+#set protocol=tcp
+#set source_port=
+#set destination_port=
+#set tcp_flag_syn=any
+#set tcp_flag_ack=any
+#set tcp_flag_fin=any
+#set tcp_flag_rst=any
+#set tcp_flag_urg=any
+#set tcp_flag_psh=any
+#set protocol=udp
+#set source_udp_port=
+#set destination_udp_port=
+set protocol=icmp
+set icmp_type=timestamp_reply
+#set input_interface=
+#set output_interface=
+set fragments=all_packets_and_fragments
+set match_ip_addresses_different_than_source_ip|mask=no
+set match_ip_addresses_different_than_destination_ip|mask=no
+set match_source_ports_different_than_source_ports=no
+set match_destination_ports_different_than_destination_ports=no
+set match_protocols_different_than_protocol=no
+set match_tcp_flags_different_than_tcp_flags=no
+set match_icmp_types_different_than_icmp_type=no
+set match_input_interfaces_different_than_input_interface=no
+set match_output_interfaces_different_than_output_interface=no
+save --cancelOnError
+add
+set target=DROP
+#set source_net4=
+#set destination_net4=
+#set protocol=numeric
+#set protocol_number=
+#set protocol=tcp
+#set source_port=
+#set destination_port=
+#set tcp_flag_syn=any
+#set tcp_flag_ack=any
+#set tcp_flag_fin=any
+#set tcp_flag_rst=any
+#set tcp_flag_urg=any
+#set tcp_flag_psh=any
+#set protocol=udp
+#set source_udp_port=
+#set destination_udp_port=
+set protocol=icmp
+set icmp_type=timestamp_request
+#set input_interface=
+#set output_interface=
+set fragments=all_packets_and_fragments
+set match_ip_addresses_different_than_source_ip|mask=no
+set match_ip_addresses_different_than_destination_ip|mask=no
+set match_source_ports_different_than_source_ports=no
+set match_destination_ports_different_than_destination_ports=no
+set match_protocols_different_than_protocol=no
+set match_tcp_flags_different_than_tcp_flags=no
+set match_icmp_types_different_than_icmp_type=no
+set match_input_interfaces_different_than_input_interface=no
+set match_output_interfaces_different_than_output_interface=no
+save --cancelOnError
+cd /network/firewall/ipv4_filter_table/OUTPUT
+delete -
+cd /network/firewall/ipv4_filter_table
+change_policy OUTPUT
+set policy=accept
+save --cancelOnError
+cd /network/firewall/ipv4_filter_table/OUTPUT
+# Table OUTPUT is empty
+cd /network/firewall/ipv6_filter_table
+delete -
+cd /network/firewall/ipv6_filter_table/FORWARD
+delete -
+cd /network/firewall/ipv6_filter_table
+change_policy FORWARD
+set policy=accept
+save --cancelOnError
+cd /network/firewall/ipv6_filter_table/FORWARD
+# Table FORWARD is empty
+cd /network/firewall/ipv6_filter_table/INPUT
+delete -
+cd /network/firewall/ipv6_filter_table
+change_policy INPUT
+set policy=accept
+save --cancelOnError
+cd /network/firewall/ipv6_filter_table/INPUT
+# Table INPUT is empty
+cd /network/firewall/ipv6_filter_table/OUTPUT
+delete -
+cd /network/firewall/ipv6_filter_table
+change_policy OUTPUT
+set policy=accept
+save --cancelOnError
+cd /network/firewall/ipv6_filter_table/OUTPUT
+# Table OUTPUT is empty
+cd /network/ipsec(vpn)
+delete -
+# Table ipsec(vpn) is empty
+cd /network/snmp
+system
+set syscontact=Avocent_Corporation
+set syslocation="Avocent_ACS8000  "
+save --cancelOnError
+cd /network/snmp
+delete -
+# Table snmp is empty
+cd /network/dhcp_server/settings
+batch_mode
+set device=eth1
+set enable_dhcp_server=no
+#set subnet_address=192.168.161.0
+#set subnet_mask=255.255.255.0
+#set default_lease_time_(hours)=12
+#set max_lease_time_(hours)=12
+#set start_ip_address=192.168.161.100
+#set end_ip_address=192.168.161.200
+#set vendor_class_identifier=
+#set server_name=
+#set file_name=
+submit
+cd /network/dhcp_server/assigned_addresses
+delete -
+yes
+cd /pluggable_devices
+batch_mode
+submit
+cd /ports/serial_ports
+set_cas 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,
+set status=disabled
+save --cancelOnError
+set_cas 1
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7001
+set ssh_port_alias=3001
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 2
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7002
+set ssh_port_alias=3002
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 3
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7003
+set ssh_port_alias=3003
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 4
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7004
+set ssh_port_alias=3004
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 5
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7005
+set ssh_port_alias=3005
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 6
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7006
+set ssh_port_alias=3006
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 7
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7007
+set ssh_port_alias=3007
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 8
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7008
+set ssh_port_alias=3008
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 9
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7009
+set ssh_port_alias=3009
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 10
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7010
+set ssh_port_alias=3010
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 11
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7011
+set ssh_port_alias=3011
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 12
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7012
+set ssh_port_alias=3012
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 13
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7013
+set ssh_port_alias=3013
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 14
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7014
+set ssh_port_alias=3014
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 15
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7015
+set ssh_port_alias=3015
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 16
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7016
+set ssh_port_alias=3016
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 17
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7017
+set ssh_port_alias=3017
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 18
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7018
+set ssh_port_alias=3018
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 19
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7019
+set ssh_port_alias=3019
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 20
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7020
+set ssh_port_alias=3020
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 21
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7021
+set ssh_port_alias=3021
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 22
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7022
+set ssh_port_alias=3022
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 23
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7023
+set ssh_port_alias=3023
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 24
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7024
+set ssh_port_alias=3024
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 25
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7025
+set ssh_port_alias=3025
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 26
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7026
+set ssh_port_alias=3026
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 27
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7027
+set ssh_port_alias=3027
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 28
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7028
+set ssh_port_alias=3028
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 29
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7029
+set ssh_port_alias=3029
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 30
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7030
+set ssh_port_alias=3030
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 31
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7031
+#set ssh_port_alias=
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 32
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7032
+set ssh_port_alias=3032
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 33
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7033
+set ssh_port_alias=3033
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 34
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7034
+set ssh_port_alias=3034
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 35
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7035
+set ssh_port_alias=3035
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 36
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7036
+set ssh_port_alias=3036
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 37
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7037
+set ssh_port_alias=3037
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 38
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7038
+set ssh_port_alias=3038
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 39
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7039
+set ssh_port_alias=3039
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 40
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7040
+set ssh_port_alias=3040
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 41
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7041
+set ssh_port_alias=3041
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 42
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7042
+set ssh_port_alias=3042
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 43
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7043
+set ssh_port_alias=3043
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 44
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7044
+set ssh_port_alias=3044
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 45
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7045
+set ssh_port_alias=3045
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 46
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7046
+set ssh_port_alias=3046
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 47
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7047
+set ssh_port_alias=3047
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+cd /ports/serial_ports
+set_cas 48
+set rj45_pin-out=auto
+set speed=9600
+set parity=none
+set data_bits=8
+set stop_bits=1
+set flow_control=none
+cd cas
+#set port_name=
+set enable_auto_discovery=yes
+set auto_disc_type=probe
+#set auto_disc_type=command
+#set auto_disc_username=
+#set auto_disc_password=
+#set auto_disc_command=hostname
+set enable_speed_auto_detection=yes
+set protocol=ssh
+set authentication_type=local
+set text_session_hot_key=^Z
+set power_session_hot_key=^P
+#set restful_hot_key=
+set telnet_port_alias=7048
+set ssh_port_alias=3048
+#set raw_mode_port_alias=
+#set port_ipv4_alias=
+set port_ipv4_alias_interface=eth0
+#set port_ipv6_alias=
+set port_ipv6_alias_interface=eth0
+set dcd_sensitivity=no
+set enable_auto_answer=no
+set dtr_mode=normal
+set dtr_off_interval=100
+set line_feed_suppression=disabled
+set null_after_cr_suppression=disabled
+set transmission_interval=20
+set break_sequence=~break
+set break_interval=500
+set show_multi-session_menu=disabled
+set log_in|out_multi_session_notification=disabled
+set informational_message_notification=enabled
+cd data_buffering
+set status=disabled
+set type=local
+set local_type=mmcblk0
+set time_stamp=disabled
+set login|logout_message=disabled
+set serial_session_logging=enabled
+cd alerts
+delete -
+disable_alerts
+cd power
+delete -
+save --cancelOnError
+# No Internal Modem, internal_modem skipped.
+set_cas 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,
+set status=enabled
+save --cancelOnError
+commit
+cd /ports/cas_profile/auto_discovery/settings
+batch_mode
+set auto_discovery_timeout_(seconds)=60
+set probe_timeout_(seconds)=2
+set default_speed_on_auto_discovery_failure=9600
+set probe_speed_1200=no
+set probe_speed_2400=no
+set probe_speed_4800=no
+set probe_speed_9600=yes
+set probe_speed_19200=no
+set probe_speed_38400=no
+set probe_speed_57600=no
+set probe_speed_115200=no
+set probe_speed_230400=no
+submit
+cd /ports/cas_profile/auto_discovery/probe_strings
+delete -
+add
+set probe_string=\\r
+save --cancelOnError
+cd /ports/cas_profile/auto_discovery/match_strings
+delete -
+add
+set match_string="%H .*ogin:"
+save --cancelOnError
+add
+set match_string=%H!login:
+save --cancelOnError
+add
+set match_string="\\(ACS[v]\\?6000\\|Avocent PM\\) [^ ]* %H tty[S\\|A]"
+save --cancelOnError
+add
+set match_string=%H>
+save --cancelOnError
+add
+set match_string=%H#
+save --cancelOnError
+add
+set match_string="\\(ACS[6\\|8]000\\) [^ ]* %H /dev/tty"
+save --cancelOnError
+cd /ports/cas_profile/auto_discovery/commands
+delete -
+add
+set name=hostname
+set command=hostname
+set match=%H
+#set logout_command=
+#set login_prompt=
+#set password_prompt=
+#set command_prompt=
+save --cancelOnError
+add
+set name=uname
+set command="uname -a"
+set match="Linux %H .*$"
+#set logout_command=
+#set login_prompt=
+#set password_prompt=
+#set command_prompt=
+save --cancelOnError
+cd /ports/cas_profile/auto_answer
+delete -
+# Table auto_answer is empty
+cd /ports/cas_profile/pool_of_ports
+delete -
+# Table pool_of_ports is empty
+cd /ports/cas_profile/restful_settings
+batch_mode
+#set action_name_3=
+set http_method_3=GET
+#set url_3=
+#set post_data_3=
+#set username_3=
+#set password_3=
+#set action_name_4=
+set http_method_4=GET
+#set url_4=
+#set post_data_4=
+#set username_4=
+#set password_4=
+#set action_name_5=
+set http_method_5=GET
+#set url_5=
+#set post_data_5=
+#set username_5=
+#set password_5=
+#set action_name_6=
+set http_method_6=GET
+#set url_6=
+#set post_data_6=
+#set username_6=
+#set password_6=
+#set action_name_7=
+set http_method_7=GET
+#set url_7=
+#set post_data_7=
+#set username_7=
+#set password_7=
+#set action_name_8=
+set http_method_8=GET
+#set url_8=
+#set post_data_8=
+#set username_8=
+#set password_8=
+#set action_name_9=
+set http_method_9=GET
+#set url_9=
+#set post_data_9=
+#set username_9=
+#set password_9=
+#set action_name_10=
+set http_method_10=GET
+#set url_10=
+#set post_data_10=
+#set username_10=
+#set password_10=
+submit
+cd /ports/dial-in_profile/settings
+batch_mode
+set log_in_to_appliance=disable
+set otp_login_authentication=disable
+set ppp_connection=disable
+set ppp|pap_authentication=local
+set caller_id_filter=disable
+submit
+cd /ports/dial-in_profile/secure_dial-in/callback_users
+delete -
+# Table callback_users is empty
+# Page ppp_otp_users skipped.
+cd /ports/dial-in_profile/secure_dial-in/caller_id
+delete -
+cd /ports/dial-in_profile/secure_dial-in/chap_secrets
+delete -
+# Table chap_secrets is empty
+cd /authentication/appliance_authentication
+batch_mode
+set authentication_type=local
+set enable_single_sign-on=no
+#set single_sign-on_authentication_type=unconfigured
+set enable_mfa_token_field=no
+submit
+cd /authentication/authentication_servers/radius
+batch_mode
+set first_authentication_server=127.0.0.1
+set first_accounting_server=127.0.0.1
+#set second_authentication_server=
+#set second_accounting_server=
+set secret=secret
+set timeout=3
+set retries=2
+set enable_servicetype=no
+#set service_type_login=
+#set service_type_framed=
+#set service_type_callback_login=
+#set service_type_callback_framed=
+#set service_type_outbound=
+#set service_type_administrative=
+submit
+cd /authentication/authentication_servers/tacacs+
+batch_mode
+#set first_authentication_server=
+#set first_accounting_server=
+#set second_authentication_server=
+#set second_accounting_server=
+set service=ppp
+#set secret=
+set timeout=10
+set retries=2
+set tacacs+_version=v1
+set enable_user-level=no
+#set user_level_1=
+#set user_level_2=
+#set user_level_3=
+#set user_level_4=
+#set user_level_5=
+#set user_level_6=
+#set user_level_7=
+#set user_level_8=
+#set user_level_9=
+#set user_level_10=
+#set user_level_11=
+#set user_level_12=
+#set user_level_13=
+#set user_level_14=
+#set user_level_15=
+submit
+cd /authentication/authentication_servers/ldap(s)|ad
+batch_mode
+#set server=
+#set base=
+set secure=off
+#set database_user_name=
+#set database_password=
+#set login_attributes=
+submit
+cd /authentication/authentication_servers/kerberos
+batch_mode
+#set server=
+#set realm_domain_name=
+#set domain_name=
+submit
+cd /authentication/authentication_servers/dsview
+batch_mode
+set ip_address_1=0.0.0.0
+set ip_address_2=0.0.0.0
+set ip_address_3=0.0.0.0
+set ip_address_4=0.0.0.0
+submit
+cd /users/authorization/groups
+delete -
+yes
+add
+set name=admin
+save --cancelOnError
+add
+set name=appliance-admin
+save --cancelOnError
+add
+set name=shell-login-profile
+save --cancelOnError
+add
+set name=user
+save --cancelOnError
+cd /users/authorization/groups/admin/members
+delete -
+yes
+add
+set member=admin,amoallin,bcavallaro,fbrunelle,gjoubert,mmarcotte,mriordan,root,vmurray
+save --cancelOnError
+cd /users/authorization/groups/admin/login_profile
+batch_mode
+set session_timeout=use_global_settings
+#set session_timeout=use_custom_settings
+#set custom_session_timeout=300
+set enable_log-in_profile=no
+#set profile=ts_menu
+#set options=
+#set profile=cli
+#set cli_cmd=
+#set exit_after_executing=
+submit
+cd /users/authorization/groups/admin/access_rights/serial
+delete -
+add
+set targets=ttyS1(FortiGate-60F),ttyS2(Router),ttyS3(COM-200_Port-3),ttyS4(COM-200_Port-4),ttyS5(FortiGate-40F-3G4G),ttyS6(COM-200_Port-6),ttyS7(COM-200_Port-7),ttyS8(FortiGate-60F-2),ttyS9(COM-200_Port-9),ttyS10(COM-200_Port-10),ttyS11(COM-200_Port-11),ttyS12(FortiGate-60F-1),ttyS13(COM-200_Port-13),ttyS14(COM-200_Port-14),ttyS15(COM-200_Port-15),ttyS16(33-4d-11-p-16),ttyS17(COM-200_Port-17),ttyS18(COM-200_Port-18),ttyS19(COM-200_Port-19),ttyS20(COM-200_Port-20),ttyS21(COM-200_Port-21),ttyS22(COM-200_Port-22),ttyS23(COM-200_Port-23),ttyS24(COM-200_Port-24),ttyS25(COM-200_Port-25),ttyS26(COM-200_Port-26),ttyS27(COM-200_Port-27),ttyS28(COM-200_Port-28),ttyS29(COM-200_Port-29),ttyS30(COM-200_Port-30),ttyS31(COM-200_Port-31),ttyS32(COM-200_Port-32),ttyS33(COM-200_Port-33),ttyS34(COM-200_Port-34),ttyS35(COM-200_Port-35),ttyS36(COM-200_Port-36),ttyS37(COM-200_Port-37),ttyS38(COM-200_Port-38),ttyS39(COM-200_Port-39),ttyS40(COM-200_Port-40),ttyS41(COM-200_Port-41),ttyS42(COM-200_Port-42),ttyS43(COM-200_Port-43),ttyS44(COM-200_Port-44),ttyS45(COM-200_Port-45),ttyS46(COM-200_Port-46),ttyS47(COM-200_Port-47),ttyS48(COM-200_Port-48)
+#set session=single_session
+#set access_mode=rw_session
+#set access_mode=ro_session
+set session=multi_session
+set multi_access_mode=multi_rw_session
+#set multi_access_mode=multi_ro_session
+set kill_multi_session=yes
+set send_message_multi_session=yes
+set power_control=yes
+set data_buffer_management=yes
+set restful_menu=yes
+save --cancelOnError
+cd /users/authorization/groups/admin/access_rights/appliance
+batch_mode
+set view_appliance_information=yes
+set disconnect_sessions=yes
+set reboot_appliance=yes
+set appliance_flash_upgrade_and_reboot_appliance=yes
+set configure_appliance_settings=yes
+set configure_user_accounts=yes
+set backup|restore_configuration=yes
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=yes
+set transfer_files=yes
+set dial-in_access=yes
+submit
+cd /users/authorization/groups/appliance-admin/members
+delete -
+yes
+add
+set member=amoallin,bcavallaro,fbrunelle,gjoubert,mmarcotte,mriordan,vmurray
+save --cancelOnError
+cd /users/authorization/groups/appliance-admin/login_profile
+batch_mode
+set enable_log-in_profile=no
+#set cli_cmd=
+#set exit_after_executing=
+submit
+cd /users/authorization/groups/appliance-admin/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/authorization/groups/appliance-admin/access_rights/appliance
+batch_mode
+set view_appliance_information=yes
+set disconnect_sessions=yes
+set reboot_appliance=yes
+set appliance_flash_upgrade_and_reboot_appliance=yes
+set configure_appliance_settings=yes
+set configure_user_accounts=no
+set backup|restore_configuration=yes
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=yes
+set dial-in_access=yes
+submit
+cd /users/authorization/groups/shell-login-profile/members
+delete -
+yes
+add
+set member=amoallin,bcavallaro,fbrunelle,gjoubert,mmarcotte,mriordan,root,vmurray
+save --cancelOnError
+cd /users/authorization/groups/shell-login-profile/login_profile
+batch_mode
+set session_timeout=use_global_settings
+#set session_timeout=use_custom_settings
+#set custom_session_timeout=300
+set enable_log-in_profile=yes
+#set profile=ts_menu
+#set options=
+set profile=cli
+set cli_cmd=shell
+set exit_after_executing=yes
+submit
+cd /users/authorization/groups/shell-login-profile/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/authorization/groups/shell-login-profile/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/authorization/groups/shell-login-profile/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/authorization/groups/shell-login-profile/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/authorization/groups/shell-login-profile/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/authorization/groups/shell-login-profile/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=yes
+set transfer_files=no
+set dial-in_access=yes
+submit
+cd /users/authorization/groups/user/members
+delete -
+yes
+add
+set member=ahellested,amoallin,aseymore,bcavallaro,cfontaine,fbrunelle,gjoubert,jlam,jvega,ksantiago,lvasquez,mbarros,mdillenburg,mmarcotte,mriordan,msoliman,obarve,takinosho,testuser,tfontaine,tmil,vmurray,zli,ztessier
+save --cancelOnError
+cd /users/authorization/groups/user/login_profile
+batch_mode
+set session_timeout=use_global_settings
+#set session_timeout=use_custom_settings
+#set custom_session_timeout=300
+set enable_log-in_profile=no
+#set profile=ts_menu
+#set options=
+#set profile=cli
+#set cli_cmd=
+#set exit_after_executing=
+submit
+cd /users/authorization/groups/user/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/authorization/groups/user/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/authorization/groups/user/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/authorization/groups/user/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/authorization/groups/user/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/authorization/groups/user/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=yes
+submit
+cd /users/authorization/dsview_access_rights
+batch_mode
+#set map_to_=single_session
+#set access_mode=rw_session
+#set access_mode=ro_session
+set map_to_=multi_session
+set multi_access_mode=multi_rw_session
+#set multi_access_mode=multi_ro_session
+set kill_multi_session=yes
+set send_message_multi_session=yes
+submit
+cd /users/local_accounts/user_names
+delete -
+yes
+add
+set user_name=admin
+set status=enabled
+#set password=
+set hash_password=$6$Y/K.KKsr$XucnPFfSr65wT4tlkEU.lllNZjFVG16oXD5.kb.rgz//K7b2zITCsacKYgwVko8Th1FHeOxri/En6heFyW7M61
+#set confirm_password=
+set password_change_at_next_login=no
+set user_group=admin
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=ahellested
+set status=enabled
+#set password=
+set hash_password=$6$Lu65CvDM$KQT2XrSTJbAzGZkPOtCL61Ph25xM93c/bQcs.3IXQTcQzmphfiBaGNk82dQisbDOaHfriIJu9uOegfkA5GtMX.
+#set confirm_password=
+set password_change_at_next_login=yes
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=amoallin
+set status=enabled
+#set password=
+set hash_password=$6$uRvZ8xqO$VxzvekamOj0bn1CG0jqfn8U/nqy8GG/kfQ6yds7pFbqai6kPjfVvTH1tGSZbpogpjoPfE7g3r2qrwTpdrLfIm/
+#set confirm_password=
+set password_change_at_next_login=no
+set user_group=admin,appliance-admin,shell-login-profile,user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=aseymore
+set status=enabled
+#set password=
+set hash_password=$6$nGuQrlI6$dQIC3v5jwoBm50pbxejnEb9xB38x8UK04Q9rU8xT71k/WXs4hHXUDrpGT1b6eLYK7AbXNotrLY1Y.Wecphy6Y1
+#set confirm_password=
+set password_change_at_next_login=yes
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=bcavallaro
+set status=enabled
+#set password=
+set hash_password=$6$T9.HC0TM$n3RyFS93Ez8M0DkjtZTTK2Vgj9H9qsmgG/NgouJIoSiaQOKnES51XGcuqfweM5ptaAy5pu9jOUEb38.BypOoW.
+#set confirm_password=
+set password_change_at_next_login=no
+set user_group=admin,appliance-admin,shell-login-profile,user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=cfontaine
+set status=enabled
+#set password=
+set hash_password=$6$OQCw9ywE$5sNeEameSUJS9Q7JzI/UQb1muFiY8RoWNPYMvHnfSyhnykvsWpvpuJ9xtKBK4fIN/6QV8uyPwm4tGYKs5jaML/
+#set confirm_password=
+set password_change_at_next_login=yes
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=fbrunelle
+set status=enabled
+#set password=
+set hash_password=$6$YqhHkDWr$HS6fL3UbwtAAQ/dxBUUSeHLvWn6OITPBvsV3shqM7sRqtRhHn0hVnVtbkg/06tZQw0/u8oHP7.ovJRoySQweS.
+#set confirm_password=
+set password_change_at_next_login=no
+set user_group=admin,appliance-admin,shell-login-profile,user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=gjoubert
+set status=enabled
+#set password=
+set hash_password=$6$Vn.eDc16$TD44UCMNSjkcF/ife7FvxWdjIsQRkg7OGlA2E/WLEjEtuf3RBvIlGXSmcSyylVXaoh0uJCi11T.ij1npGaZGW0
+#set confirm_password=
+set password_change_at_next_login=no
+set user_group=admin,appliance-admin,shell-login-profile,user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=jlam
+set status=enabled
+#set password=
+set hash_password=$6$Xxj0vQy3$2MCA3wwX6x2fmk2MNbBk3adjLw.bBNUJ6cx9oLwtGoQZywmGQr3OcyMhw41XCmcVXhGmG8mgv68O9XU9Nu8ou1
+#set confirm_password=
+set password_change_at_next_login=yes
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=jvega
+set status=enabled
+#set password=
+set hash_password=$6$muq6Cwyl$ys.bDoiiRsPAMaxC9Q4dcdhPGhtjZc7qVLUcuOGm9aUUbkoyFc9ZAbkYsvQuYLqz1fnzNqYI3k3e4Zl6oH13H/
+#set confirm_password=
+set password_change_at_next_login=yes
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=ksantiago
+set status=enabled
+#set password=
+set hash_password=$6$A3lmyVsC$aU498XMSpOng0QedFfOlQwIjxkODoSdZzEr2Ub1yCSNpf1xmh6/q6dRM6xmUdPgUPsr7Lzr0x/RVHjCUFRzms1
+#set confirm_password=
+set password_change_at_next_login=yes
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=lvasquez
+set status=enabled
+#set password=
+set hash_password=$6$sb4gEjbN$Jd2co3bJly72vMZY42E2Ots9OqbBivS4PcAeUHbNzN597MkWDYk3kZAOARmveMyl.g8y3kIYvU.kng8han3hC/
+#set confirm_password=
+set password_change_at_next_login=yes
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=mbarros
+set status=enabled
+#set password=
+set hash_password=$6$bnSOdXI4$g46rC8GAv7GXGtpo/2rkyIYSnLgPPV6pE0J/vpiQXifYg8L1FLpJMiOGE9aqaD1fi8eCww7p5emEjxqzWDNTO.
+#set confirm_password=
+set password_change_at_next_login=yes
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=mdillenburg
+set status=enabled
+#set password=
+set hash_password=$6$lHjTAMPz$0BnCnMW4AzKGQ5C8n1j91n5ZbhgIMObvLkczi9/TmHUJC2N/heBw.i8R7pp7WqPhkuvZ0YsIfyrTyj167xYN21
+#set confirm_password=
+set password_change_at_next_login=no
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=mmarcotte
+set status=enabled
+#set password=
+set hash_password=$6$3EkDSKax$QrPXUa6qnKX2QLWIgEguFDRI7HLAZOSh7Ug390t5p0AJH.s8TC2lspr21KzHvCQxPKOP.f9NMK/ydvonwQHEK.
+#set confirm_password=
+set password_change_at_next_login=no
+set user_group=admin,appliance-admin,shell-login-profile,user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=mriordan
+set status=enabled
+#set password=
+set hash_password=$6$0QfhgeXi$FPtQDzYVWJzG8./vFnI/PSbowwXL/Ziz3iQcwuXyFwZyFaRztp4bUHXQo7TuQDRrtmNJyHadM6Z1Sv0oXTGDK0
+#set confirm_password=
+set password_change_at_next_login=yes
+set user_group=admin,appliance-admin,shell-login-profile,user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=msoliman
+set status=enabled
+#set password=
+set hash_password=$6$c8Cfm9CR$2vYRyYUkh4vDofH1sRSlV0VcerP0vWG4fFNFscYuDUbe7hEJvt/yUnoIUj8lAUxLtFFtaCXkE9r3hgS5FvcYl.
+#set confirm_password=
+set password_change_at_next_login=no
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=obarve
+set status=enabled
+#set password=
+set hash_password=$6$w4IkcPDn$1nJS5cTc.uI4jttFcPt2WZYCZ1AW7NRGBXLLmXdTKD7W3.V1XRokooWj03cmoybEPe3D0FTjtNyEU/ZAZXQkL0
+#set confirm_password=
+set password_change_at_next_login=no
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=root
+set status=enabled
+#set password=
+set hash_password=$6$HfLr9QT2$2OGb8YhSY9ZR4y04BA5zqtFCj5cuAIXE/pl.0LCMtd2aYjYLRPJqoH55SzuPkWFqXRs8Nvp/qPmNqZwpwYD8O/
+#set confirm_password=
+set password_change_at_next_login=no
+set user_group=admin,shell-login-profile
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+save --cancelOnError
+add
+set user_name=takinosho
+set status=enabled
+#set password=
+set hash_password=$6$cSngS21.$nvk6TMJKJlki71YOuTaLc82XXhzAcP3IkY8opKeWouOZP2HSJsSREb1IQEkBngn8Bxs6QYIL.cviWgOZf82UM/
+#set confirm_password=
+set password_change_at_next_login=yes
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=testuser
+set status=enabled
+#set password=
+set hash_password=$6$.xD8zhdv$94jb6rcM8V0fs8obNBbhVDKWld2nTyaUScl4709LSDXfPkph93QdCpTR6IDET3sEEuryn.v0KOYzW9VfHc4ur.
+#set confirm_password=
+set password_change_at_next_login=no
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=tfontaine
+set status=enabled
+#set password=
+set hash_password=$6$KSY/uXKR$VVFADIpfuWax6Wfw2a3k9lRetaDdO/VHpZiZQtmVfEq56Py5zFQu4V846DcVxSECHRcyziSjN0/ZibU3aKClm0
+#set confirm_password=
+set password_change_at_next_login=no
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=tmil
+set status=enabled
+#set password=
+set hash_password=$6$zTnou8UQ$2R1uj/lxcmqqDRboHxtglL1Gc9YVkEwCXwgfx4XBJfmH7s75AcNzcpLy/xOxb22KhdgpmPIprtNcRRZg/WQ5e1
+#set confirm_password=
+set password_change_at_next_login=yes
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=vmurray
+set status=enabled
+#set password=
+set hash_password=$6$WUxiMdlK$kImDI7C2NGn3zzwlOuiKrb1LMcxi/JZf2.NRUAAnKlRkr2afOGoFkgtRK2As0gyBkGUr5MoJO2sOtG7IdGPUi.
+#set confirm_password=
+set password_change_at_next_login=no
+set user_group=admin,appliance-admin,shell-login-profile,user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=zli
+set status=enabled
+#set password=
+set hash_password=$6$HU8STSdJ$CEBi5EDnvLPUNEs85LNYtwu.m0tfCO96SMD3tQPD1x229gMif19y2/u5kdgfIfF2z9MGcjqCoynVRuIjG1pk./
+#set confirm_password=
+set password_change_at_next_login=yes
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+add
+set user_name=ztessier
+set status=enabled
+#set password=
+set hash_password=$6$W9nin0BS$fNT2JI9eXSuHWTHtI3.vt5oUqOCyWvLYu.idfRmson8KyJ7Fvjc9q6XxadleqCqOVq3r.1AWeeCtTzzBDhftW0
+#set confirm_password=
+set password_change_at_next_login=yes
+set user_group=user
+set password_minimum_days=0
+set password_maximum_days=99999
+#set password_inactive_days=
+set password_warning_days=7
+#set account_expiration-date=
+save --cancelOnError
+cd /users/local_accounts/user_names/admin/access_rights/appliance
+batch_mode
+set view_appliance_information=yes
+set disconnect_sessions=yes
+set reboot_appliance=yes
+set appliance_flash_upgrade_and_reboot_appliance=yes
+set configure_appliance_settings=yes
+set configure_user_accounts=yes
+set backup|restore_configuration=yes
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=yes
+set transfer_files=yes
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/ahellested/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/ahellested/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/ahellested/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/ahellested/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/ahellested/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/ahellested/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/amoallin/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/amoallin/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/amoallin/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/amoallin/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/amoallin/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/amoallin/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/aseymore/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/aseymore/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/aseymore/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/aseymore/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/aseymore/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/aseymore/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/bcavallaro/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/bcavallaro/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/bcavallaro/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/bcavallaro/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/bcavallaro/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/bcavallaro/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/cfontaine/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/cfontaine/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/cfontaine/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/cfontaine/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/cfontaine/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/cfontaine/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/fbrunelle/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/fbrunelle/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/fbrunelle/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/fbrunelle/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/fbrunelle/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/fbrunelle/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/gjoubert/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/gjoubert/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/gjoubert/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/gjoubert/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/gjoubert/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/gjoubert/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/jlam/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/jlam/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/jlam/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/jlam/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/jlam/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/jlam/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/jvega/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/jvega/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/jvega/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/jvega/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/jvega/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/jvega/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/ksantiago/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/ksantiago/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/ksantiago/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/ksantiago/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/ksantiago/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/ksantiago/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/lvasquez/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/lvasquez/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/lvasquez/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/lvasquez/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/lvasquez/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/lvasquez/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/mbarros/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/mbarros/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/mbarros/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/mbarros/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/mbarros/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/mbarros/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/mdillenburg/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/mdillenburg/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/mdillenburg/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/mdillenburg/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/mdillenburg/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/mdillenburg/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/mmarcotte/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/mmarcotte/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/mmarcotte/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/mmarcotte/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/mmarcotte/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/mmarcotte/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/mriordan/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/mriordan/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/mriordan/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/mriordan/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/mriordan/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/mriordan/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/msoliman/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/msoliman/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/msoliman/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/msoliman/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/msoliman/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/msoliman/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/obarve/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/obarve/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/obarve/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/obarve/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/obarve/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/obarve/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/root/access_rights/appliance
+batch_mode
+set view_appliance_information=yes
+set disconnect_sessions=yes
+set reboot_appliance=yes
+set appliance_flash_upgrade_and_reboot_appliance=yes
+set configure_appliance_settings=yes
+set configure_user_accounts=yes
+set backup|restore_configuration=yes
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=yes
+set transfer_files=yes
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/takinosho/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/takinosho/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/takinosho/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/takinosho/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/takinosho/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/takinosho/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/testuser/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/testuser/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/testuser/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/testuser/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/testuser/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/testuser/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/tfontaine/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/tfontaine/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/tfontaine/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/tfontaine/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/tfontaine/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/tfontaine/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/tmil/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/tmil/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/tmil/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/tmil/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/tmil/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/tmil/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/vmurray/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/vmurray/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/vmurray/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/vmurray/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/vmurray/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/vmurray/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/zli/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/zli/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/zli/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/zli/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/zli/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/zli/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/user_names/ztessier/access_rights/serial
+delete -
+# Table serial is empty
+cd /users/local_accounts/user_names/ztessier/access_rights/power/pdu
+delete -
+# Table pdu is empty
+cd /users/local_accounts/user_names/ztessier/access_rights/power/outlets
+delete -
+# Table outlets is empty
+cd /users/local_accounts/user_names/ztessier/access_rights/power/ups
+delete -
+# Table ups is empty
+cd /users/local_accounts/user_names/ztessier/access_rights/power/ups_outlet_groups
+delete -
+# Table ups_outlet_groups is empty
+cd /users/local_accounts/user_names/ztessier/access_rights/appliance
+batch_mode
+set view_appliance_information=no
+set disconnect_sessions=no
+set reboot_appliance=no
+set appliance_flash_upgrade_and_reboot_appliance=no
+set configure_appliance_settings=no
+set configure_user_accounts=no
+set backup|restore_configuration=no
+set shell_access(grants_access_to_the_appliance_shell_which_can_be_used_to_bypass_other_rights|_such_as_file_transfer|_etc.)=no
+set transfer_files=no
+set dial-in_access=no
+submit
+cd /users/local_accounts/password_rules
+batch_mode
+set check_password_complexity=yes
+set min_digits=0
+set min_upper_case_characters=0
+set min_special_characters=0
+set minimum_size=8
+set def_expiration_min_days=0
+set def_expiration_max_days=99999
+set def_expiration_warning_days=7
+set number_of_permitted_failed_attempts_(0|disabled)=0
+set account_lockout_duration_after_each_failed_login_(min)=0
+set unlock_account_after_(min)_(0|manual_unlock)=10
+set use_legacy_password_scheme=no
+submit
+cd /events_and_logs/event_list/1
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/2
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/3
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/4
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/5
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/6
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/8
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/9
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/10
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/11
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/12
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/13
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/14
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/16
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/17
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/18
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/19
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/20
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/21
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/22
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/24
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/25
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/26
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/27
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/50
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/51
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/52
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/53
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/100
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/101
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/120
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/121
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/122
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/123
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/124
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/140
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/141
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/142
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/150
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/151
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/152
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/153
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/154
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/200
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/201
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/202
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/300
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/301
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/302
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/303
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/304
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/307
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/308
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/309
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/310
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/311
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/312
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/313
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/314
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/350
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/351
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/352
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/353
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/354
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/355
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/356
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/357
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/358
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/370
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/371
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/372
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/373
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/374
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/375
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/376
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/377
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/378
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/379
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/380
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/381
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/382
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/383
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/384
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/385
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/386
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/387
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/388
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/389
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/390
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/391
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/392
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/400
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/401
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/402
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/403
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/404
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/405
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/450
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/451
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/452
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/453
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/500
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/501
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/502
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/503
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/504
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/505
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/506
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/507
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/508
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/509
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/510
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/511
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/512
+batch_mode
+set send_syslog_message=no
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/513
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/514
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/515
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_list/516
+batch_mode
+set send_syslog_message=yes
+set send_snmp_trap=no
+set send_sms_message=no
+set send_email=no
+set send_message_to_dsview=no
+submit
+cd /events_and_logs/event_destinations
+batch_mode
+set syslog_facility=log_local_0
+set remote_server_-_ipv4=no
+#set remote_1_server= #remote_1_udp_port=
+#set remote_2_server= #remote_2_udp_port=
+#set remote_3_server= #remote_3_udp_port=
+#set remote_4_server= #remote_4_udp_port=
+#set remote_5_server= #remote_5_udp_port=
+set remote_server_-_ipv6=no
+#set ipv6_remote_1_server= #ipv6_remote_1_udp_port=
+#set ipv6_remote_2_server= #ipv6_remote_2_udp_port=
+#set ipv6_remote_3_server= #ipv6_remote_3_udp_port=
+#set ipv6_remote_4_server= #ipv6_remote_4_udp_port=
+#set ipv6_remote_5_server= #ipv6_remote_5_udp_port=
+set appliance_console=no
+set root_session=yes
+set snmptrap_community=public
+#set snmptrap_server_1=
+#set snmptrap_server_2=
+#set snmptrap_server_3=
+#set snmptrap_server_4=
+#set snmptrap_server_5=
+#set sms_server=
+set sms_port=6701
+#set sms_pager_number=
+#set email_server=
+set email_port=25
+#set destination_email=
+set dsview_server=10.0.0.1
+set dsview_syslog_server_port=4514
+set ssh_server_port=4122
+set ssh_user_name=admin
+set ssh_idle_timeout_(sec)=15
+set ssh_start_threshold_(bytes)=10000
+set ssh_tunnel_buffer_size_(bytes)=1000000
+set buffer_full_first_warning_(bytes)=500000
+set buffer_full_second_warning_(bytes)=700000
+set buffer_full_third_warning_(bytes)=1000000
+submit
+cd /events_and_logs/trap_forward
+delete -
+# Table trap_forward is empty
+cd /events_and_logs/data_buffering
+batch_mode
+set segment_size_(kbytes|_0|unlimited_size)=256
+set spare_segments=1
+#set nfs_server=
+#set nfs_path=
+set nfs_segment_size_(kbytes)=1024
+set nfs_spare_segments=10
+#set close_log_files_and_open_new_ones_at_time_(hh:mm)=
+set syslog_facility=log_local_0
+submit
+cd /events_and_logs/appliance_logging
+batch_mode
+set enable_session_logging=no
+#set destination=local
+#set local_destination=mmcblk0
+#set timestamp=disabled
+#set enable_session_logging_alerts=no
+#set string_1=
+#set string_2=
+#set string_3=
+#set string_4=
+#set string_5=
+#set string_6=
+#set string_7=
+#set string_8=
+#set string_9=
+#set string_10=
+submit
+cd /events_and_logs/sensors
+batch_mode
+#set maximum_board_temperature_(deg_c)=
+#set maximum_board_temperature_threshold_(deg_c)=
+#set minimum_board_temperature_(deg_c)=
+#set minimum_board_temperature_threshold_(deg_c)=
+submit
+commit
+cd /power_management/network_pdus
+delete -
+# Table network_pdus is empty
+commit
+cd /power_management/network_ups
+delete -
+# Table network_ups is empty
+commit
+cd /power_management/login
+batch_mode
+set geist_username=admin
+set geist_password=admin
+set enp_password=admin
+set avocent-cyclades_password=pm8
+set spc_password=admn
+set servertech_password=admn
+set raritan_password=admin
+set eaton_password=admin
+set apc_password=apc
+submit
+cd /power_management/outlet_groups
+delete -
+cd /sensors/appliance/internal
+batch_mode
+#set maximum_cpu_temperature_(deg_c)=
+#set maximum_cpu_temperature_threshold_(deg_c)=
+#set minimum_cpu_temperature_(deg_c)=
+#set minimum_cpu_temperature_threshold_(deg_c)=
+#set maximum_board_temperature_(deg_c)=
+#set maximum_board_temperature_threshold_(deg_c)=
+#set minimum_board_temperature_(deg_c)=
+#set minimum_board_temperature_threshold_(deg_c)=
+submit
+cd /sensors/appliance/digital_in/1
+batch_mode
+set name=1
+#set location=
+set type=custom
+set alarm=disabled
+submit
+cd /sensors/appliance/digital_in/2
+batch_mode
+set name=2
+#set location=
+set type=custom
+set alarm=disabled
+submit
+cd /sensors/appliance/digital_in/3
+batch_mode
+set name=3
+#set location=
+set type=custom
+set alarm=disabled
+submit
+cd /sensors/appliance/digital_in/4
+batch_mode
+set name=4
+#set location=
+set type=custom
+set alarm=disabled
+submit
+cd /monitoring/scheduled_tasks
+delete -
+yes
+# Table scheduled_tasks is empty
+# Page change_password skipped.
+echo on
+commit
